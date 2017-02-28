@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import axios from 'axios';
+
+import Search from './components/Search';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { message: "" };
-
-    this.loadData = this.loadData.bind(this);
+    this.url = "http://localhost:3100/api/";
   }
 
   componentWillMount() {
@@ -18,23 +15,18 @@ class App extends Component {
   }
 
   loadData(){
-    axios.get(this.props.url)
-      .then(res => {
-        this.setState({ message: res.data.message });
-      })
   }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to { this.state.message }</h2>
-          <h2></h2>
+      <div className="container">
+        <div className="jumbotron text-center">
+          <h1>Plans tonight?</h1>
+          <p>See which bars are hoppin' tonight and RSVP ahead of time!</p>
+          <br/>
+          <p>Remember: take a cab and drink responsibly.</p>
+          <Search url={ this.url }/>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
