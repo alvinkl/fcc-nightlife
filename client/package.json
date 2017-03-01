@@ -7,14 +7,18 @@
     "react-scripts": "0.9.2"
   },
   "dependencies": {
+    "auth0-lock": "^10.11.0",
     "axios": "^0.15.3",
+    "babel-cli": "^6.0.0",
     "bootstrap": "^3.3.7",
+    "jwt-decode": "^2.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "babel": "babel --presets es2015 utils/dev --out-dir utils/build --watch",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
