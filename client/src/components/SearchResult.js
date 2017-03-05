@@ -8,13 +8,16 @@ class SearchResult extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { reserved: false }
+    this.auth = this.props.auth
+
+    this.state = { reserved: false, isLoggedIn: this.auth.loggedIn() }
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState({ reserved: !this.state.reserved })
+    if (this.state.isLoggedIn) this.setState({ reserved: !this.state.reserved });
+    else this.auth.login();
   }
 
   render() {

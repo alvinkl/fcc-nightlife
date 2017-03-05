@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import AuthService from '../utils/build/AuthService'
+
 import Search from './components/Search';
+
+const auth = new AuthService('ixXUVnBXsIMmScQsfOmIGoRUBG5DqIpI', 'alvinkl.au.auth0.com');
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.url = "http://localhost:3100/api/";
-  }
-
-  componentWillMount() {
-    this.loadData();
-  }
-
-  loadData(){
   }
 
   render() {
@@ -25,7 +22,9 @@ class App extends Component {
           <p>See which bars are hoppin' tonight and RSVP ahead of time!</p>
           <br/>
           <p>Remember: take a cab and drink responsibly.</p>
-          <Search url={ this.url }/>
+          <Search 
+            url={ this.url }
+            auth={ auth } />
         </div>
       </div>
     );

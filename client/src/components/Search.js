@@ -5,26 +5,31 @@ import SearchResult from './SearchResult';
 
 class Search extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = { value: "" };
+    this.state = { value: "", data: [] };
+
+    this.auth = this.props.auth;
 
     this.search = this.search.bind(this);
     this.getData = this.getData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ value:  e.target.value})
+    this.getData();
   }
 
   search(e) {
     e.preventDefault();
-    let value = e.target.search.value;
-    this.setState({ value: value, data: [] })
     this.getData();
   }
 
   getData() {
     axios.get(`${this.props.url}location=${this.state.value}`)
       .then(res => {
-        console.log(res.data);
         this.setState({ data: res.data.businesses })
       })
   }
@@ -40,6 +45,7 @@ class Search extends Component {
           text={ item.snippet_text }
           image={ item.image_url }
           location={ item.location }
+          auth= { this.auth }
         />
       )
     }) : '';
